@@ -15,32 +15,6 @@
 #define PATH_MAX 1024
 #define MAX_THREAD 20
 
-// Function to process environmental variables in the path
-char* process_variables(char* path) {
-    if (path == NULL) {
-        return NULL;
-    }
-    // Check if path begins with '$', indicating an environment variable
-    if (path[0] == '$') {
-        char* variable = getenv(path + 1);  // Retrieve the environment variable
-        if (variable == NULL) {
-            return NULL;  // Environment variable not found
-        }
-        char* buffer = malloc(strlen(variable) + 1);  // Allocate memory for the variable
-        if (buffer == NULL) {
-            return NULL;  // Memory allocation failed
-        }
-        for (int i = 0; i < strlen(variable); i++) {
-            if (variable[i] == ':') {
-                variable[i] = ',';
-            }
-        }
-        strcpy(buffer, variable);
-        return buffer;
-
-    }
-    return path; // Return the original path if no environment variable is found
-}
 
 // Thread function to print executable files in directories
 void* printExe(void* dirs) {
@@ -49,12 +23,7 @@ void* printExe(void* dirs) {
     char** tokenisedInput = tokenise(directories, &count); // Tokenise the input directory paths
 
     for (int i = 0; i < count; i++) {
-        char *process_dir = process_variables(tokenisedInput[i]); // Process each directory path
-        if (process_dir  == NULL) {
-            destructTokenInput(tokenisedInput, count);
-            recoverableError("Invalid path");
-            pthread_exit(EXIT_FAILURE);
-        }
+        char *process_dir = tokenisedInput[i];
 
         DIR* directory = opendir(process_dir); // Open the directory
         if (directory == NULL) {
@@ -117,7 +86,7 @@ int main(const int argc, char** argv) {
             unrecoverableError("Error -> Too many threads allocated ending program");
         }
         printf("---------------------------> STARTING THREAD: %d\n", count);
-        const int thread_status = pthread_create(&thread_id[count], NULL, printExe, argv[count + 1]);
+        int thread_status = pthread_create(&thread_id[count], NULL, printExe, argv[count + 1]);
         if (thread_status != 0) {
             recoverableError("Error -> Cannot create thread");
         }
