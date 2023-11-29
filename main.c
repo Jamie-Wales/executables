@@ -24,8 +24,7 @@ void* printExe(void* dirs) {
 
     for (int i = 0; i < count; i++) {
         char *process_dir = tokenisedInput[i];
-
-        DIR* directory = opendir(process_dir); // Open the directory
+        DIR* directory = opendir(process_dir);
         if (directory == NULL) {
             recoverableError("Invalid directory");
             recoverableError(process_dir);

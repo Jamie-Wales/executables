@@ -35,6 +35,13 @@ char* process_variables(char* path) {
         return buffer;
 
     }
+
+
+    for (int i = 0; i < strlen(path) + 1; i++) {
+        if (path[i] == ':') {
+            path[i] = ',';
+        }
+    }
     return path; // Return the original path if no environment variable is found
 }
 
