@@ -72,7 +72,7 @@ char** tokenise(char* string, int* size) {
 
 void destructTokenInput(char **tokenisedInput, int count) {
     char** free_buffer = tokenisedInput;
-    for (int i = 0; i < count - 1; i++){
+    for (int i = 0; i < count; i++){
         free(tokenisedInput[count]);
     }
     free(free_buffer);
