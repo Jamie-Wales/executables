@@ -1,0 +1,3 @@
+/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles/executables.dir
+/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles/edit_cache.dir
+/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles/rebuild_cache.dir

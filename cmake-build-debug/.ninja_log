@@ -1,0 +1,13 @@
+# ninja log v5
+0	28	1701119963856761314	CMakeFiles/executables.dir/utils.c.o	38a6d2bf842641ed
+0	28	1701117399829758923	CMakeFiles/executables.dir/output.c.o	da590a82085fd229
+0	29	1701117399830959326	CMakeFiles/executables.dir/path.c.o	26ddd275cd0693d2
+32	61	1701120293350041012	executables	5a1bb45d2c696e14
+1	32	1701120293320103830	CMakeFiles/executables.dir/main.c.o	63e7dd1f07748b1
+1	32	1701096310866212118	CMakeFiles/executables.dir/exe.c.o	238ebe607c8bf7fe
+7	77	1701250587824205895	build.ninja	6025c9db9c13ebe0
+1	230	1701250588057677598	CMakeFiles/executables.dir/utils.c.o	38a6d2bf842641ed
+1	230	1701250588057683307	CMakeFiles/executables.dir/main.c.o	63e7dd1f07748b1
+1	233	1701250588057676973	CMakeFiles/executables.dir/path.c.o	26ddd275cd0693d2
+1	233	1701250588057695890	CMakeFiles/executables.dir/output.c.o	da590a82085fd229
+233	367	1701250588195365688	executables	f72a11421c0df8b6
