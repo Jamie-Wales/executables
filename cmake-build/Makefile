@@ -129,30 +129,6 @@ executables/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/executables.dir/build.make CMakeFiles/executables.dir/build
 .PHONY : executables/fast
 
-exe.o: exe.c.o
-.PHONY : exe.o
-
-# target to build an object file
-exe.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/executables.dir/build.make CMakeFiles/executables.dir/exe.c.o
-.PHONY : exe.c.o
-
-exe.i: exe.c.i
-.PHONY : exe.i
-
-# target to preprocess a source file
-exe.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/executables.dir/build.make CMakeFiles/executables.dir/exe.c.i
-.PHONY : exe.c.i
-
-exe.s: exe.c.s
-.PHONY : exe.s
-
-# target to generate assembly for a file
-exe.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/executables.dir/build.make CMakeFiles/executables.dir/exe.c.s
-.PHONY : exe.c.s
-
 main.o: main.c.o
 .PHONY : main.o
 
@@ -258,9 +234,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... executables"
-	@echo "... exe.o"
-	@echo "... exe.i"
-	@echo "... exe.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

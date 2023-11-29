@@ -4,7 +4,7 @@
 
 #ifndef UTILS_H
 #define UTILS_H
-//Function to tokenise comma separated list assumes ", " is passed
+//Function to tokenise comma separated list assumes "," is passed
 char** tokenise(char* string, int* size);
 //Function to open directory and print all exe files
 void* printExe(void* dirs);

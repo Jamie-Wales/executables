@@ -22,7 +22,7 @@ char* process_variables(char* path) {
     }
     // Check if path begins with '$', indicating an environment variable
     if (path[0] == '$') {
-        const char* variable = getenv(path + 1);  // Retrieve the environment variable
+        char* variable = getenv(path + 1);  // Retrieve the environment variable
         if (variable == NULL) {
             return NULL;  // Environment variable not found
         }
@@ -30,8 +30,14 @@ char* process_variables(char* path) {
         if (buffer == NULL) {
             return NULL;  // Memory allocation failed
         }
+        for (int i = 0; i < strlen(variable); i++) {
+            if (variable[i] == ':') {
+                variable[i] = ',';
+            }
+        }
         strcpy(buffer, variable);
         return buffer;
+
     }
     return path; // Return the original path if no environment variable is found
 }
@@ -115,6 +121,7 @@ int main(const int argc, char** argv) {
         if (thread_status != 0) {
             recoverableError("Error -> Cannot create thread");
         }
+        count++;
     } while (count < argc - 1); // Iterate over all input arguments except the program name
     count = 0;
     do {

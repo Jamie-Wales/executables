@@ -14,7 +14,7 @@
 
 // Function to tokenize the list of executables
 char** tokenise(char* string, int* size) {
-    const char* delims = ", "; // Delimiters for tokenizine
+    const char* delims = ","; // Delimiters for tokenizine
     char** tokenisedInput = calloc(BUFFSIZE, sizeof(char *));
 
     if (tokenisedInput == NULL) {
@@ -72,7 +72,7 @@ char** tokenise(char* string, int* size) {
 
 void destructTokenInput(char **tokenisedInput, int count) {
     char** free_buffer = tokenisedInput;
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count - 1; i++){
         free(tokenisedInput[count]);
     }
     free(free_buffer);

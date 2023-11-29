@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/executables.dir/exe.c.o"
-  "CMakeFiles/executables.dir/exe.c.o.d"
   "CMakeFiles/executables.dir/main.c.o"
   "CMakeFiles/executables.dir/main.c.o.d"
   "CMakeFiles/executables.dir/output.c.o"

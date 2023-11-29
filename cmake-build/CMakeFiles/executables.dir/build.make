@@ -97,24 +97,10 @@ CMakeFiles/executables.dir/path.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/executables.dir/path.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jamie/Dev/university/aos/c/executables/path.c -o CMakeFiles/executables.dir/path.c.s
 
-CMakeFiles/executables.dir/exe.c.o: CMakeFiles/executables.dir/flags.make
-CMakeFiles/executables.dir/exe.c.o: /Users/jamie/Dev/university/aos/c/executables/exe.c
-CMakeFiles/executables.dir/exe.c.o: CMakeFiles/executables.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/executables.dir/exe.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/executables.dir/exe.c.o -MF CMakeFiles/executables.dir/exe.c.o.d -o CMakeFiles/executables.dir/exe.c.o -c /Users/jamie/Dev/university/aos/c/executables/exe.c
-
-CMakeFiles/executables.dir/exe.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/executables.dir/exe.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jamie/Dev/university/aos/c/executables/exe.c > CMakeFiles/executables.dir/exe.c.i
-
-CMakeFiles/executables.dir/exe.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/executables.dir/exe.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jamie/Dev/university/aos/c/executables/exe.c -o CMakeFiles/executables.dir/exe.c.s
-
 CMakeFiles/executables.dir/output.c.o: CMakeFiles/executables.dir/flags.make
 CMakeFiles/executables.dir/output.c.o: /Users/jamie/Dev/university/aos/c/executables/output.c
 CMakeFiles/executables.dir/output.c.o: CMakeFiles/executables.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/executables.dir/output.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/executables.dir/output.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/executables.dir/output.c.o -MF CMakeFiles/executables.dir/output.c.o.d -o CMakeFiles/executables.dir/output.c.o -c /Users/jamie/Dev/university/aos/c/executables/output.c
 
 CMakeFiles/executables.dir/output.c.i: cmake_force
@@ -128,7 +114,7 @@ CMakeFiles/executables.dir/output.c.s: cmake_force
 CMakeFiles/executables.dir/utils.c.o: CMakeFiles/executables.dir/flags.make
 CMakeFiles/executables.dir/utils.c.o: /Users/jamie/Dev/university/aos/c/executables/utils.c
 CMakeFiles/executables.dir/utils.c.o: CMakeFiles/executables.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/executables.dir/utils.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/executables.dir/utils.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/executables.dir/utils.c.o -MF CMakeFiles/executables.dir/utils.c.o.d -o CMakeFiles/executables.dir/utils.c.o -c /Users/jamie/Dev/university/aos/c/executables/utils.c
 
 CMakeFiles/executables.dir/utils.c.i: cmake_force
@@ -143,7 +129,6 @@ CMakeFiles/executables.dir/utils.c.s: cmake_force
 executables_OBJECTS = \
 "CMakeFiles/executables.dir/main.c.o" \
 "CMakeFiles/executables.dir/path.c.o" \
-"CMakeFiles/executables.dir/exe.c.o" \
 "CMakeFiles/executables.dir/output.c.o" \
 "CMakeFiles/executables.dir/utils.c.o"
 
@@ -152,12 +137,11 @@ executables_EXTERNAL_OBJECTS =
 
 executables: CMakeFiles/executables.dir/main.c.o
 executables: CMakeFiles/executables.dir/path.c.o
-executables: CMakeFiles/executables.dir/exe.c.o
 executables: CMakeFiles/executables.dir/output.c.o
 executables: CMakeFiles/executables.dir/utils.c.o
 executables: CMakeFiles/executables.dir/build.make
 executables: CMakeFiles/executables.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable executables"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jamie/Dev/university/aos/c/executables/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable executables"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/executables.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

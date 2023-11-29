@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/jamie/Dev/university/aos/c/executables/exe.c" "CMakeFiles/executables.dir/exe.c.o" "gcc" "CMakeFiles/executables.dir/exe.c.o.d"
   "/Users/jamie/Dev/university/aos/c/executables/main.c" "CMakeFiles/executables.dir/main.c.o" "gcc" "CMakeFiles/executables.dir/main.c.o.d"
   "/Users/jamie/Dev/university/aos/c/executables/output.c" "CMakeFiles/executables.dir/output.c.o" "gcc" "CMakeFiles/executables.dir/output.c.o.d"
   "/Users/jamie/Dev/university/aos/c/executables/path.c" "CMakeFiles/executables.dir/path.c.o" "gcc" "CMakeFiles/executables.dir/path.c.o.d"
