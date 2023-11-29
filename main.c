@@ -28,8 +28,8 @@ void* printExe(void* dirs) {
         DIR* directory = opendir(process_dir); // Open the directory
         if (directory == NULL) {
             recoverableError("Invalid directory");
-            destructTokenInput(tokenisedInput, count);
-            pthread_exit(EXIT_FAILURE);
+            recoverableError(process_dir);
+            continue;
         }
         printf("-----------> OPENING DIRECTORY: %s\n", tokenisedInput[i]);
         errno = 0;  // Reset errno before calling readdir
