@@ -12,7 +12,7 @@
 #include "utils.h"
 
 // Constants for maximum path length and maximum number of threads
-#define PATH_MAX 1024
+#define BUFF_SIZE  2048
 #define MAX_THREAD 20
 
 
@@ -25,7 +25,7 @@ void* printExe(void* dirs) {
     for (int i = 0; i < count; i++) {
         DIR* directory = opendir(tokenisedInput[i]);
         if (directory == NULL) {
-            char errorBuf[1024] = "Invalid directory ";
+            char errorBuf[BUFF_SIZE] = "Invalid directory ";
             recoverableError(strcat(errorBuf, tokenisedInput[i]));
             continue;
         }
@@ -33,7 +33,7 @@ void* printExe(void* dirs) {
         errno = 0;  // Reset errno before calling readdir
         struct dirent* direct;
         while ((direct = readdir(directory)) != NULL) {
-            char fullPath[PATH_MAX] = {};
+            char fullPath[BUFF_SIZE] = {};
             snprintf(fullPath, sizeof(fullPath), "%s/%s", tokenisedInput[i], direct->d_name); // Construct the full path
             struct stat sb;
             // Check if the file is an executable
@@ -55,11 +55,11 @@ void* printExe(void* dirs) {
 
 // Function to get the current working directory
 char* getCwd() {
-    char* directory = malloc(PATH_MAX);
+    char* directory = malloc(BUFF_SIZE);
     if (directory == NULL) {
         unrecoverableError("Error -> cannot allocate memory ending program");
     }
-    getcwd(directory, PATH_MAX);
+    getcwd(directory, BUFF_SIZE);
     return directory;
 }
 

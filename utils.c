@@ -13,11 +13,11 @@
 #include "output.h"
 // Function to process environmental variables in the path
 void process_variables(char* path) {
-        for (int i = 0; i < strlen(path); i++) {
-            if (path[i] == ':') {
-                path[i] = ',';
-            }
+    for (int i = 0; i < strlen(path); i++) {
+        if (path[i] == ':') {
+            path[i] = ',';
         }
+    }
 }
 
 
@@ -46,7 +46,7 @@ char** tokenise(char* string, int* size) {
 
         // Handling special cases for '.' and '~'
         if (token[0] == '.') {
-            char* currentDir[BUFFSIZE];
+            char currentDir[BUFFSIZE];
             getcwd(currentDir, BUFFSIZE);
             strcpy(buffer, currentDir);
             if (strlen(token) > 1) {
@@ -59,8 +59,6 @@ char** tokenise(char* string, int* size) {
             if (strlen(token) > 1) {
                 strcat(buffer, token + 1); // Append the rest of the token
             }
-
-
         }
 
         // If it is a path we need to retokenise
@@ -75,7 +73,8 @@ char** tokenise(char* string, int* size) {
         // recurse retokenise
         if (retokenise) {
             pathToken = tokenise(token, &count_size);
-        } else {
+        }
+        else {
             count_size = 1;
             pathToken = &token;
         }
@@ -88,24 +87,21 @@ char** tokenise(char* string, int* size) {
             if (*head == NULL) {
                 unrecoverableError("Error -> unable to allocate memory program ending");
             }
-            strncpy(*head,pathToken[i],tokenSize);
+            strncpy(*head, pathToken[i], tokenSize);
             head++;
             *size = *size + 1;
         }
         free(buffer); // Free the temporary buffer
         token = strtok(NULL, delims);
-
     }
     destructPath(path);
     return tokenisedInput;
-
 }
 
-void destructTokenInput(char **tokenisedInput, const int count) {
+void destructTokenInput(char** tokenisedInput, const int count) {
     char** free_buffer = tokenisedInput;
-    for (int i = 0; i < count-1; i++){
+    for (int i = 0; i < count - 1; i++) {
         free(tokenisedInput[i]);
-
     }
     free(free_buffer);
 }
