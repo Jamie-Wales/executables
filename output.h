@@ -10,4 +10,4 @@
 void recoverableError(char *errorMessage); // Function to handle recoverable errors
 void unrecoverableError(char *errorMessage); // Function to handle unrecoverable errors
 
-#endif /EXECUTABLES_OUTPUT_H
+#endif EXECUTABLES_OUTPUT_H
