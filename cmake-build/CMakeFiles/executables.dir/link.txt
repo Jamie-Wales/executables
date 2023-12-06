@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/executables.dir/main.c.o CMakeFiles/executables.dir/path.c.o CMakeFiles/executables.dir/output.c.o CMakeFiles/executables.dir/utils.c.o -o executables 
