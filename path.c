@@ -1,3 +1,7 @@
+//
+// Created by Jamie Wales on 26/11/2023.
+//
+
 #include "path.h"
 #include <stdlib.h>
 #include <string.h>

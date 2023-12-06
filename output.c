@@ -6,12 +6,12 @@
 #include <stdio.h>
 #include "stdlib.h"
 // Functions for handling errors
-void recoverableError(char* message) {
-    fprintf(stderr, "Error -> %s\n", message);
+void recoverableError(char* errorMessage) {
+    fprintf(stderr, "Error -> %s\n", errorMessage);
 }
 
-void unrecoverableError(char* message) {
-    fprintf(stdout, "> %s", message);
+void unrecoverableError(char* errorMessage) {
+    fprintf(stdout, "> %s", errorMessage);
     fflush(stderr);
     exit(EXIT_FAILURE);
 }

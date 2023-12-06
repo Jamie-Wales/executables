@@ -18,16 +18,15 @@
 
 // Thread function to print executable files in directories
 void* printExe(void* dirs) {
-    char* directories = dirs;
+    char* directories = (char*)dirs;
     int count = 0;
     char** tokenisedInput = tokenise(directories, &count); // Tokenise the input directory paths
 
     for (int i = 0; i < count; i++) {
-        char *process_dir = tokenisedInput[i];
-        DIR* directory = opendir(process_dir);
+        DIR* directory = opendir(tokenisedInput[i]);
         if (directory == NULL) {
-            recoverableError("Invalid directory");
-            recoverableError(process_dir);
+            char errorBuf[1024] = "Invalid directory ";
+            recoverableError(strcat(errorBuf, tokenisedInput[i]));
             continue;
         }
         printf("-----------> OPENING DIRECTORY: %s\n", tokenisedInput[i]);
@@ -35,7 +34,7 @@ void* printExe(void* dirs) {
         struct dirent* direct;
         while ((direct = readdir(directory)) != NULL) {
             char fullPath[PATH_MAX] = {};
-            snprintf(fullPath, sizeof(fullPath), "%s/%s", process_dir, direct->d_name); // Construct the full path
+            snprintf(fullPath, sizeof(fullPath), "%s/%s", tokenisedInput[i], direct->d_name); // Construct the full path
             struct stat sb;
             // Check if the file is an executable
             if (stat(fullPath, &sb) == 0 && S_ISREG(sb.st_mode) && (sb.st_mode & (S_IXUSR | S_IXGRP | S_IXOTH))) {
@@ -43,22 +42,16 @@ void* printExe(void* dirs) {
             }
         }
         closedir(directory); // Close the directory
-        if (strcmp(process_dir, dirs) != 0) {
-            free(process_dir); // Free memory if it was dynamically allocated
-        }
         if (errno != 0) {
             recoverableError("Unable to read directory address");
-            closedir(directory);
             destructTokenInput(tokenisedInput, count);
             pthread_exit(EXIT_FAILURE);
         }
-
-
-
     }
-    free(tokenisedInput); // Free the tokenised input array
+    destructTokenInput(tokenisedInput, count);
     pthread_exit(EXIT_SUCCESS);
 }
+
 
 // Function to get the current working directory
 char* getCwd() {
@@ -84,8 +77,9 @@ int main(const int argc, char** argv) {
         if (count > MAX_THREAD - 1) {
             unrecoverableError("Error -> Too many threads allocated ending program");
         }
-        printf("---------------------------> STARTING THREAD: %d\n", count);
+
         int thread_status = pthread_create(&thread_id[count], NULL, printExe, argv[count + 1]);
+        printf("---------------------------> STARTING THREAD: %d\n", count);
         if (thread_status != 0) {
             recoverableError("Error -> Cannot create thread");
         }

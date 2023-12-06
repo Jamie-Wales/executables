@@ -5,50 +5,25 @@
 #define BUFFSIZE 1024
 
 
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include "path.h"
 #include <unistd.h>
 #include "output.h"
 // Function to process environmental variables in the path
-char* process_variables(char* path) {
-    if (path == NULL) {
-        return NULL;
-    }
-    // Check if path begins with '$', indicating an environment variable
-    if (path[0] == '$') {
-        char* variable = getenv(path + 1);  // Retrieve the environment variable
-        if (variable == NULL) {
-            return NULL;  // Environment variable not found
-        }
-        char* buffer = malloc(strlen(variable) + 1);  // Allocate memory for the variable
-        if (buffer == NULL) {
-            return NULL;  // Memory allocation failed
-        }
-
-        strcpy(buffer, variable);
-        for (int i = 0; i < strlen(variable) - 1; i++) {
-            if (buffer[i] == ':') {
-                buffer[i] = ',';
+void process_variables(char* path) {
+        for (int i = 0; i < strlen(path); i++) {
+            if (path[i] == ':') {
+                path[i] = ',';
             }
         }
-        return buffer;
-
-    }
-
-
-    for (int i = 0; i < strlen(path) + 1; i++) {
-        if (path[i] == ':') {
-            path[i] = ',';
-        }
-    }
-    return path; // Return the original path if no environment variable is found
 }
 
 
 // Function to tokenize the list of executables
 char** tokenise(char* string, int* size) {
-    const char* delims = ","; // Delimiters for tokenizine
+    const char* delims = ", "; // Delimiters for tokenizine
     char** tokenisedInput = calloc(BUFFSIZE, sizeof(char *));
 
     if (tokenisedInput == NULL) {
@@ -58,10 +33,11 @@ char** tokenise(char* string, int* size) {
     char* token = strtok(string, delims);
     char** head = tokenisedInput;
     *(size) = 0;
-    int count_size = 0;
+
     Path* path = getPath();
-    char** pathToken;
+    char** pathToken = 0;
     while (token != NULL) {
+        int count_size = 0;
         char* buffer = (char *)malloc(BUFFSIZE);
         if (*size > BUFFSIZE) {
             free(buffer);
@@ -83,53 +59,52 @@ char** tokenise(char* string, int* size) {
             if (strlen(token) > 1) {
                 strcat(buffer, token + 1); // Append the rest of the token
             }
-        } else if (token[0] == '$') {
 
-            char* path =  process_variables(token);
-            pathToken = tokenise(path, &count_size);
 
         }
-        else {
-            strcpy(buffer, token);
-        }
 
-        int tokenSize = strlen(buffer);
-        *head = malloc(tokenSize + 1); // +1 for the null terminator
-        if (head == NULL) {
-            unrecoverableError("Error -> unable to allocate memory program ending");
-        }
-
-        if (count_size > 0) {
-            for (int i = 0; i < count_size; i++) {
-                int tokenSize = strlen(pathToken[i]);
-                *head = malloc(tokenSize + 1);
-                strncpy(*head,pathToken[i],tokenSize);
-                head++;
-                *size = *size + 1;
+        // If it is a path we need to retokenise
+        bool retokenise = false;
+        process_variables(token);
+        for (int i = 0; i < strlen(token); i++) {
+            if (token[i] == ',') {
+                retokenise = true;
             }
+        }
 
+        // recurse retokenise
+        if (retokenise) {
+            pathToken = tokenise(token, &count_size);
         } else {
-            strncpy(*head, buffer, tokenSize);
-            (*head)[tokenSize] = '\0'; // Null terminate the string
+            count_size = 1;
+            pathToken = &token;
+        }
+
+
+        // Add all elements to the array
+        for (int i = 0; i < count_size; i++) {
+            int tokenSize = strlen(pathToken[i]);
+            *head = malloc(tokenSize + 1);
+            if (*head == NULL) {
+                unrecoverableError("Error -> unable to allocate memory program ending");
+            }
+            strncpy(*head,pathToken[i],tokenSize);
             head++;
             *size = *size + 1;
-
         }
         free(buffer); // Free the temporary buffer
         token = strtok(NULL, delims);
 
     }
-    for (int i = 0; i < *size; i++) {
-        tokenisedInput[i];
-    }
     return tokenisedInput;
 
 }
 
-void destructTokenInput(char **tokenisedInput, int count) {
+void destructTokenInput(char **tokenisedInput, const int count) {
     char** free_buffer = tokenisedInput;
-    for (int i = 0; i < count; i++){
-        free(tokenisedInput[count]);
+    for (int i = 0; i < count-1; i++){
+        free(tokenisedInput[i]);
+
     }
     free(free_buffer);
 }
