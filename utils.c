@@ -96,6 +96,7 @@ char** tokenise(char* string, int* size) {
         token = strtok(NULL, delims);
 
     }
+    destructPath(path);
     return tokenisedInput;
 
 }
